@@ -1,0 +1,63 @@
+---
+// Visita: fila 50/50 a sangre. Foto a la izquierda tocando el borde; a la derecha, título, pasos numerados
+// (`items`: titulo, texto) y el formulario para pedir la visita con día y espacio de interés (las opciones son
+// los nombres de los espacios de la web). Sin foto, la ficha ocupa todo el ancho en dos columnas.
+import { seccion, site, cadena } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+import FormularioContacto from '../ui/FormularioContacto.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const pasos = s ? s.items.filter((it) => it.titulo) : [];
+const opciones = [
+  ...new Set(
+    Object.values(site.secciones)
+      .filter((x) => x.activa)
+      .flatMap((x) => x.espacios.map((e) => e.nombre))
+      .filter(Boolean),
+  ),
+];
+---
+
+{
+  s && (
+    <section id={id} class="banda--blanca">
+      <div class:list={['grid', s.imagen && 'md:grid-cols-2']}>
+        {s.imagen && (
+          <div class="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-full">
+            <Imagen src={s.imagen} respaldo="/placeholders/visita.svg" alt={altSeccion(s)} ancho={1000} alto={1200} class="absolute inset-0 h-full w-full object-cover" />
+          </div>
+        )}
+        <div class:list={['px-4 py-16 md:px-10 md:py-24 lg:px-20', !s.imagen && 'contenedor']}>
+          <div class:list={['w-full', s.imagen ? 'max-w-[40rem]' : 'grid gap-12 lg:grid-cols-2']}>
+            <div>
+              {s.antetitulo && <p class="rotulo">{s.antetitulo}</p>}
+              {s.titulo && <h2 class:list={['titulo-seccion', s.imagen && 'titulo-mitad']}>{s.titulo}</h2>}
+              {s.texto && <p class="titular-texto mt-6">{s.texto}</p>}
+              {pasos.length > 0 && (
+                <ol class="mt-10 grid gap-px border border-texto/15 bg-texto/15 sm:grid-cols-3">
+                  {pasos.map((p, i) => (
+                    <li class="banda--blanca p-5">
+                      <span class="mono text-sm font-bold acento-legible">{String(i + 1).padStart(2, '0')}</span>
+                      <p class="mt-3 font-extrabold leading-tight tracking-tight">{p.titulo}</p>
+                      {p.texto && <p class="mt-1.5 text-sm opacity-75">{p.texto}</p>}
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </div>
+            <FormularioContacto
+              class="mt-12"
+              prefijo="visita"
+              visita
+              opciones={opciones}
+              boton={cadena(s.boton) || 'Pedir la visita'}
+              asunto={`Quiero visitar ${site.nombre}`}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

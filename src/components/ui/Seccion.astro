@@ -1,0 +1,13 @@
+---
+// Banda a todo el ancho. Adaptado de AstroWind (WidgetWrapper.astro), © onWidget, licencia MIT (LICENSE-ASTROWIND.md).
+// `banda`: oscura | acento | clara | blanca (fondo a sangre). `plano`: retícula decorativa de plano.
+// El contenido va en .contenedor (máx. 90 rem, 16 px de margen lateral en móvil).
+interface Props { id?: string; class?: string; contenedor?: string; banda?: 'oscura' | 'acento' | 'clara' | 'blanca'; plano?: boolean; etiqueta?: string }
+const { id, class: clase = '', contenedor = '', banda = 'clara', plano = false, etiqueta } = Astro.props;
+---
+
+<section class:list={['seccion', `banda--${banda}`, { plano }, clase]} id={id} aria-label={etiqueta}>
+  <div class:list={['contenedor', contenedor]}>
+    <slot />
+  </div>
+</section>

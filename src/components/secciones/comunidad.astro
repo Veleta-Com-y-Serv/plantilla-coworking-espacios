@@ -1,0 +1,63 @@
+---
+// Comunidad en dos bandas: una de color pleno (acento) con el título, una cita enorme (`declaracion` + `firma`)
+// y las cifras en grande (`cifras`: titulo = la cifra, texto = la etiqueta); y otra clara con las personas que
+// llevan el espacio (`personas`: nombre, cargo, foto, texto). Lo que esté vacío no se pinta.
+import { seccion, cadena } from '../../data/site';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const declaracion = s ? cadena(s.declaracion) : '';
+const firma = s ? cadena(s.firma) : '';
+const cifras = s ? s.cifras.filter((c) => c && c.titulo) : [];
+const personas = s ? s.personas.filter((p) => p && p.nombre) : [];
+---
+
+{
+  s && (
+    <section id={id}>
+      <div class="banda--acento">
+        <div class="contenedor seccion">
+          <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div class:list={[declaracion ? 'lg:col-span-5' : 'lg:col-span-9']}>
+              {s.antetitulo && <p class="rotulo">{s.antetitulo}</p>}
+              {s.titulo && <h2 class="titulo-seccion">{s.titulo}</h2>}
+              {s.texto && <p class="titular-texto mt-6 !opacity-90">{s.texto}</p>}
+            </div>
+            {declaracion && (
+              <figure class="lg:col-span-7 lg:pt-6">
+                <span class="block font-[family-name:var(--fuente-titulos)] text-[7rem] font-extrabold leading-[.6] md:text-[10rem]" aria-hidden="true">“</span>
+                <blockquote class="text-[clamp(1.6rem,3.4vw,3rem)] font-bold leading-[1.12] tracking-[-0.025em]">{declaracion}</blockquote>
+                {firma && <figcaption class="mono mt-8 text-sm uppercase tracking-[.12em]">— {firma}</figcaption>}
+              </figure>
+            )}
+          </div>
+          {cifras.length > 0 && (
+            <dl class="mt-16 grid grid-cols-2 gap-x-6 border-t-2 border-current md:mt-24 lg:grid-cols-4">
+              {cifras.map((c) => (
+                <div class="border-b border-current/25 py-6 lg:border-b-0 lg:border-r lg:py-8 lg:pr-6 lg:last:border-r-0">
+                  <dt class="text-[clamp(2.4rem,5vw,5.5rem)] font-extrabold leading-none tracking-[-0.05em]">{c.titulo}</dt>
+                  {c.texto && <dd class="mono mt-3 text-xs uppercase tracking-[.1em] opacity-85 md:text-sm">{c.texto}</dd>}
+                </div>
+              ))}
+            </dl>
+          )}
+        </div>
+      </div>
+      {personas.length > 0 && (
+        <div class="banda--blanca">
+          <ul class="contenedor grid grid-cols-2 gap-x-4 gap-y-10 py-16 md:grid-cols-4 md:gap-x-6 md:py-24 lg:gap-x-8">
+            {personas.map((p) => (
+              <li>
+                <Imagen src={p.foto || '/placeholders/persona.svg'} respaldo="/placeholders/persona.svg" alt={p.nombre} ancho={600} alto={800} class="aspect-[3/4] w-full object-cover grayscale" />
+                <p class="mt-4 text-lg font-extrabold leading-tight tracking-tight md:text-2xl">{p.nombre}</p>
+                {p.cargo && <p class="mono mt-1.5 text-[.7rem] font-semibold uppercase tracking-[.12em] opacity-70 md:text-xs">{p.cargo}</p>}
+                {p.texto && <p class="mt-3 text-sm opacity-80 md:text-base">{p.texto}</p>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </section>
+  )
+}

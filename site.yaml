@@ -1,0 +1,147 @@
+# Contenido de la web. Es lo único que rellena la plataforma NoExpertise.
+# Las secciones se muestran en el orden de este fichero. Para ocultar una: activa: false.
+# Apartado nuevo: un id propio (es su ancla, /#id) con `tipo:` = el diseño de otra sección o `texto`.
+nombre: Nau Trenta Coworking
+eslogan: Coworking en una nave rehabilitada del Poblenou, en Barcelona.
+sector: coworking
+logo: ""          # ruta a una imagen en public/ (p. ej. /logo.svg). Vacío = nombre en texto.
+colores:
+  primario: "#1e1f22"
+  acento: "#ff6a4d"
+  fondo: "#f5f3ef"
+  texto: "#17181a"
+contacto:
+  telefono: "934 58 21 07"
+  email: hola@nautrenta.es
+  direccion: Carrer de Pere IV 127, 08018 Barcelona
+  horario: Lunes a viernes de 8:00 a 20:00. Puesto fijo y despachos, acceso 24 horas con tarjeta.
+  whatsapp: "+34 644 58 21 07"
+redes:
+  instagram: https://www.instagram.com/
+  facebook: ""
+  linkedin: https://www.linkedin.com/
+menu:
+  - { texto: Espacios, url: "/#espacios" }
+  - { texto: Servicios, url: "/#servicios" }
+  - { texto: Comunidad, url: "/#comunidad" }
+  - { texto: Eventos, url: "/#eventos" }
+  - { texto: Contacto, url: "/#contacto" }
+boton_cabecera: { texto: Reserva una visita, url: "/#visita" }
+seo:
+  titulo: Nau Trenta · Coworking y despachos en el Poblenou, Barcelona
+  descripcion: Puestos flexibles y fijos, despachos privados y salas de reuniones en una nave de 1.400 m² del Poblenou. Ven a verla sin compromiso.
+  tipo: LocalBusiness   # tipo de schema.org (LocalBusiness, ProfessionalService…)
+marca_pie: true   # «Web creada con NoExpertise» en el pie (plan gratis)
+
+secciones:
+  hero:
+    activa: true
+    antetitulo: Coworking · Poblenou, Barcelona
+    titulo: Una nave entera para que trabajes a gusto.
+    texto: Puestos, despachos y salas en 1.400 m² de luz natural, a cinco minutos del metro de Llacuna. Sin permanencia y con café de verdad.
+    imagen: /fotos/hero.jpg
+    cta: { texto: Reserva una visita, url: "/#visita" }
+    cta_secundario: { texto: Ver espacios, url: "/#espacios" }
+    items:   # datos rápidos de la franja inferior
+      - { titulo: Sin permanencia, texto: Te das de baja con un mes de aviso }
+      - { titulo: Acceso 24 h, texto: Con tarjeta en puesto fijo y despachos }
+      - { titulo: Metro L4 Llacuna, texto: A cinco minutos andando }
+
+  espacios:
+    activa: true
+    antetitulo: Espacios
+    titulo: Elige cómo quieres trabajar
+    texto: Desde un día suelto hasta un despacho para todo tu equipo. Todos los espacios incluyen wifi, café y las zonas comunes.
+    espacios:
+      - { nombre: Puesto flexible, texto: "Siéntate donde quieras en la zona abierta. Ideal si vienes unos días a la semana.", precio: "Desde 150 €", periodo: al mes, capacidad: 1 persona, incluye: "Acceso de 8:00 a 20:00; Wifi de fibra; Café y té; 4 horas de sala al mes", imagen: /fotos/espacio-flexible.jpg, destacado: false }
+      - { nombre: Puesto fijo, texto: "Tu mesa, tu silla y tu cajonera con llave. Dejas el portátil y vuelves mañana.", precio: "240 €", periodo: al mes, capacidad: 1 persona, incluye: "Acceso 24 h con tarjeta; Cajonera con llave; Domiciliación fiscal; 8 horas de sala al mes", imagen: /fotos/espacio-fijo.jpg, destacado: true }
+      - { nombre: Despacho privado, texto: "Despachos cerrados con puerta de cristal y luz natural para equipos pequeños.", precio: "Desde 690 €", periodo: al mes, capacidad: 2 a 6 personas, incluye: "Acceso 24 h con tarjeta; Mobiliario y climatización; Rótulo en recepción; 15 horas de sala al mes", imagen: /fotos/espacio-despacho.jpg, destacado: false }
+      - { nombre: Sala de reuniones, texto: "Sala con pantalla grande, pizarra y agua. La reservas por horas aunque no seas miembro.", precio: "25 €", periodo: la hora, capacidad: Hasta 10 personas, incluye: "Pantalla de 65 pulgadas; Videollamada; Pizarra; Agua y café", imagen: /fotos/espacio-reuniones.jpg, destacado: false }
+      - { nombre: Sala de eventos, texto: "La planta baja de la nave para presentaciones, talleres y cursos.", precio: Consultar, periodo: "", capacidad: Hasta 60 personas, incluye: "Proyector y sonido; Sillas y mesas móviles; Zona de cáterin", imagen: /fotos/espacio-eventos.jpg, destacado: false }
+    cta: { texto: Pide una visita, url: "/#visita" }
+
+  servicios:
+    activa: true
+    antetitulo: Incluido en todos los planes
+    titulo: Todo lo que necesitas ya está aquí
+    texto: Llegas, te sientas y trabajas. Del resto nos ocupamos nosotros.
+    items:
+      - { titulo: Wifi de fibra, texto: "Fibra simétrica y red por cable en cada mesa.", icono: wifi }
+      - { titulo: Café de especialidad, texto: "Café, té e infusiones todo el día, sin contar tazas.", icono: taza }
+      - { titulo: Acceso con tarjeta, texto: "Entra a la hora que quieras si tienes puesto fijo o despacho.", icono: llave }
+      - { titulo: Domiciliación y correo, texto: "Usa la dirección de la nave y recogemos tus paquetes.", icono: buzon }
+      - { titulo: Impresora y escáner, texto: "Impresión en color y escáner a correo desde tu portátil.", icono: impresora }
+      - { titulo: Cabinas de llamada, texto: "Cabinas insonorizadas para llamadas y videollamadas.", icono: telefono }
+      - { titulo: Taquillas, texto: "Guarda tus cosas bajo llave aunque cambies de mesa.", icono: taquilla }
+      - { titulo: Aparcamiento de bicis, texto: "Dentro de la nave, con ducha y vestuario.", icono: bici }
+
+  comunidad:
+    activa: true
+    antetitulo: Comunidad
+    titulo: Aquí trabajas por tu cuenta, pero no solo.
+    texto: Diseñadores, programadoras, traductores, arquitectas y pequeños estudios comparten la nave. Nos conocemos por el nombre y nos pasamos trabajo.
+    declaracion: "Vine por la luz y me quedé por la gente. En dos años he cerrado más proyectos con vecinos de mesa que en cinco desde casa."
+    firma: "Ona Puig · Ilustradora, miembro desde 2023"
+    cifras:
+      - { titulo: "120", texto: miembros de 14 profesiones }
+      - { titulo: "1.400 m²", texto: de nave industrial rehabilitada }
+      - { titulo: "40", texto: eventos al año para la comunidad }
+      - { titulo: "4,9", texto: de valoración media de los miembros }
+    personas:
+      - { nombre: Laia Ferrer, cargo: Comunidad y altas, foto: /placeholders/persona.svg, texto: Te enseña la nave y te presenta a quien te interesa conocer. }
+      - { nombre: Marc Soler, cargo: Recepción y salas, foto: /placeholders/persona.svg, texto: "Reservas de salas, paquetes y todo lo del día a día." }
+      - { nombre: Núria Vidal, cargo: Eventos, foto: /placeholders/persona.svg, texto: Organiza los desayunos de los viernes y las charlas. }
+      - { nombre: Pau Riera, cargo: Instalaciones, foto: /placeholders/persona.svg, texto: "Si algo no funciona, él ya está en ello." }
+
+  eventos:
+    activa: true
+    antetitulo: Agenda de la nave
+    titulo: Próximos eventos
+    texto: Abiertos a los miembros y, con inscripción, a quien quiera venir a conocernos.
+    noticias:
+      - { fecha: "13 nov", hora: "9:30", titulo: Desayuno de miembros, texto: "Café, cruasanes y cinco minutos para que cada uno cuente en qué anda.", categoria: Comunidad, url: "/#visita" }
+      - { fecha: "19 nov", hora: "18:30", titulo: Facturar como autónomo sin sustos, texto: "Charla práctica con una asesora del barrio: cuotas, IVA y los plazos de cada trimestre.", categoria: Charla, url: "/#visita" }
+      - { fecha: "27 nov", hora: "17:00", titulo: Fotografía de producto con el móvil, texto: "Luz, fondo y encuadre para que tus fotos parezcan de estudio. Trae tu producto.", categoria: Taller, url: "/#visita" }
+      - { fecha: "4 dic", hora: "19:00", titulo: Vermut de puertas abiertas, texto: "Ven a ver la nave, conoce a los miembros y quédate a la sobremesa.", categoria: Puertas abiertas, url: "/#visita" }
+
+  galeria:
+    activa: true
+    antetitulo: La nave
+    titulo: Techos altos, luz de sobra
+    texto: Una antigua fábrica textil de 1924 con sus vigas de hierro, ladrillo visto y lucernarios en toda la cubierta.
+    galeria:
+      - /fotos/galeria-1.jpg
+      - /fotos/galeria-2.jpg
+      - /fotos/galeria-3.jpg
+      - /fotos/galeria-4.jpg
+      - /fotos/galeria-5.jpg
+      - /fotos/galeria-6.jpg
+      - /fotos/galeria-7.jpg
+
+  visita:
+    activa: true
+    antetitulo: Visita sin compromiso
+    titulo: Ven a verla antes de decidir
+    texto: Te enseñamos la nave en veinte minutos y, si te convence, te quedas a trabajar el resto del día sin pagar.
+    imagen: /fotos/visita.jpg
+    items:
+      - { titulo: Elige día y hora, texto: "De lunes a viernes, entre las 9:00 y las 19:00." }
+      - { titulo: Te enseñamos la nave, texto: "Puestos, despachos, salas y zonas comunes." }
+      - { titulo: Prueba un día gratis, texto: "Te damos una mesa y la clave del wifi." }
+
+  preguntas:
+    activa: true
+    antetitulo: Preguntas frecuentes
+    titulo: Lo que nos preguntan antes de venir
+    preguntas:
+      - { pregunta: "¿Hay permanencia?", respuesta: "No. Pagas mes a mes y te das de baja avisando con un mes de antelación. Sin penalizaciones." }
+      - { pregunta: "¿Puedo venir solo un día?", respuesta: "Sí. El pase de día incluye mesa en la zona abierta, wifi, café y una hora de sala si está libre." }
+      - { pregunta: "¿Puedo domiciliar mi empresa en la nave?", respuesta: "Sí, con el puesto fijo y los despachos. Usas nuestra dirección fiscal y recogemos tu correo y tus paquetes." }
+      - { pregunta: "¿Se admiten perros?", respuesta: "Sí, los perros tranquilos son bienvenidos en la zona abierta. Avísanos antes y te contamos las normas de convivencia." }
+      - { pregunta: "¿Puedo reservar una sala sin ser miembro?", respuesta: "Sí. Las salas de reuniones y la sala de eventos se reservan por horas aunque no trabajes aquí." }
+
+  contacto:
+    activa: true
+    antetitulo: Contacto
+    titulo: Pásate o escríbenos
+    texto: Respondemos el mismo día laborable. Si vienes en bici, entra por el portón grande.

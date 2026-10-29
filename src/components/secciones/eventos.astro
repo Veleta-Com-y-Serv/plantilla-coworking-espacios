@@ -1,0 +1,75 @@
+---
+// Agenda de eventos como un panel de salidas: banda de carbón y filas a todo el ancho separadas por líneas, con
+// el día enorme en el acento, el mes y la hora en monoespaciada, el tipo de evento, el título y el texto.
+// Lista `noticias` (fecha, hora, titulo, texto, categoria, url). La fecha es libre: si empieza por un número
+// («13 nov», «4 de diciembre») se separa en día y mes; si no, se pinta tal cual. Sin eventos no se pinta el apartado.
+import { seccion, cadena } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const eventos = (s ? s.noticias.filter((n) => n && n.titulo) : []).map((n) => {
+  const fecha = cadena(n.fecha);
+  const m = fecha.match(/^\s*(?:[a-záéíóúñ]+\s+)?(\d{1,2})(?:\s+de)?\s+([a-záéíóúñ.]+)(.*)$/i);
+  return {
+    ...n,
+    fecha,
+    dia: m ? m[1] : '',
+    mes: m ? (m[2] + m[3]).trim() : '',
+    hora: cadena(n.hora),
+    categoria: cadena(n.categoria),
+    url: cadena(n.url),
+  };
+});
+---
+
+{
+  s && eventos.length > 0 && (
+    <section id={id} class="banda--oscura seccion">
+      <div class="contenedor">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        {eventos.length > 0 && (
+          <ol class="mt-14 border-t border-current/20 md:mt-20">
+            {eventos.map((e) => (
+              <li class="evento grid grid-cols-[5.5rem_1fr] gap-x-5 gap-y-3 border-b border-current/20 py-7 md:grid-cols-[9rem_12rem_1fr_auto] md:items-center md:gap-x-8 md:py-9">
+                <p class="row-span-2 md:row-span-1">
+                  {e.dia ? (
+                    <>
+                      <span class="block text-[clamp(3rem,6vw,5rem)] font-extrabold leading-[.85] tracking-[-0.05em] text-[var(--c-acento)]">{e.dia}</span>
+                      <span class="mono mt-2 block text-xs font-semibold uppercase tracking-[.16em]">{e.mes}</span>
+                    </>
+                  ) : (
+                    <span class="mono block text-sm font-semibold uppercase tracking-[.12em] text-[var(--c-acento)]">{e.fecha}</span>
+                  )}
+                </p>
+                {(e.categoria || e.hora) && (
+                  <p class="mono flex flex-wrap gap-x-3 gap-y-1 text-xs uppercase tracking-[.14em] opacity-75 md:flex-col">
+                    {e.categoria && <span>{e.categoria}</span>}
+                    {e.hora && <span>{e.hora}</span>}
+                  </p>
+                )}
+                <div class:list={['col-start-2 md:col-start-auto', !(e.categoria || e.hora) && 'md:col-span-2']}>
+                  <h3 class="text-[clamp(1.4rem,2.6vw,2.2rem)] tracking-tight">{e.titulo}</h3>
+                  {e.texto && <p class="mt-2 max-w-3xl opacity-75">{e.texto}</p>}
+                </div>
+                {e.url ? (
+                  <a href={e.url} class="evento-flecha col-start-2 inline-grid h-12 w-12 place-items-center border-2 border-current/40 text-xl md:col-start-auto" aria-label={`Más sobre ${e.titulo}`}>
+                    <span aria-hidden="true">→</span>
+                  </a>
+                ) : (
+                  <span class="hidden md:block" aria-hidden="true" />
+                )}
+              </li>
+            ))}
+          </ol>
+        )}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .evento { transition: background-color .2s ease; }
+  .evento-flecha { transition: background-color .15s ease, color .15s ease, border-color .15s ease; }
+  .evento:hover .evento-flecha, .evento-flecha:focus-visible { background: var(--c-acento); color: var(--sobre-acento); border-color: var(--c-acento); }
+</style>

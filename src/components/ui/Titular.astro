@@ -1,0 +1,19 @@
+---
+// Cabecera de banda: rótulo + título enorme a la izquierda y texto a la derecha en escritorio (a todo el ancho).
+// Adaptado de AstroWind (Headline.astro), © onWidget, MIT.
+interface Props { titulo?: string; antetitulo?: string; texto?: string; class?: string; nivel?: 1 | 2 }
+const { titulo, antetitulo, texto, class: clase = '', nivel = 2 } = Astro.props;
+const H = nivel === 1 ? 'h1' : 'h2';
+---
+
+{
+  (titulo || antetitulo || texto) && (
+    <div class:list={['grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-12', clase]}>
+      <div class="lg:col-span-7">
+        {antetitulo && <p class="rotulo">{antetitulo}</p>}
+        {titulo && <H class="titulo-seccion">{titulo}</H>}
+      </div>
+      {texto && <p class="titular-texto lg:col-span-5 lg:pb-2">{texto}</p>}
+    </div>
+  )
+}

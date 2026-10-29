@@ -1,0 +1,44 @@
+---
+// Galería: cabecera en banda clara y mosaico de borde a borde, sin márgenes ni huecos (2 columnas en móvil,
+// 4 en escritorio; cada siete fotos, una grande de 2×2 y dos apaisadas). Lista `galeria` (rutas de fotos).
+import { seccion, site } from '../../data/site';
+import { altGaleria } from '../../lib/seo';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const fotos = s ? s.galeria.filter((f) => typeof f === 'string' && f) : [];
+const forma = (i: number) => {
+  const n = i % 7;
+  if (n === 0) return 'col-span-2 row-span-2';
+  if (n === 3 || n === 6) return 'col-span-2';
+  return '';
+};
+---
+
+{
+  s && (
+    <section id={id} class="banda--clara">
+      {(s.titulo || s.antetitulo || s.texto) && (
+        <div class="contenedor seccion">
+          <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        </div>
+      )}
+      {fotos.length > 0 && (
+        <ul class="grid grid-flow-dense auto-rows-[44vw] grid-cols-2 md:auto-rows-[22vw] md:grid-cols-4" aria-label={`Fotos de ${site.nombre}`}>
+          {fotos.map((f, i) => (
+            <li class:list={['overflow-hidden', forma(i)]}>
+              <Imagen src={f} respaldo="/placeholders/galeria.svg" alt={altGaleria(i)} ancho={1000} alto={1000} class="galeria-foto h-full w-full object-cover" />
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  )
+}
+
+<style>
+  .galeria-foto { transition: transform .6s ease; }
+  li:hover > .galeria-foto { transform: scale(1.04); }
+</style>

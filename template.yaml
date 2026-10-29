@@ -1,0 +1,91 @@
+# Metadatos de la plantilla para el catálogo de NoExpertise.
+id: coworking-espacios
+nombre: Coworking y espacios
+descripcion: Web urbana a todo el ancho para coworkings y centros de negocios, con espacios, comunidad y eventos.
+sectores:
+  - { id: coworking, nombre: Coworking }
+  - { id: oficinas, nombre: Oficinas y despachos }
+  - { id: espacios, nombre: Alquiler de espacios }
+  - { id: salas, nombre: Salas de reuniones }
+  - { id: centro-negocios, nombre: Centro de negocios }
+secciones:
+  - { id: hero, nombre: Portada }
+  - { id: espacios, nombre: Espacios y tarifas }
+  - { id: servicios, nombre: Servicios incluidos }
+  - { id: comunidad, nombre: Comunidad }
+  - { id: eventos, nombre: Eventos }
+  - { id: galeria, nombre: Galería }
+  - { id: visita, nombre: Reserva una visita }
+  - { id: preguntas, nombre: Preguntas frecuentes }
+  - { id: contacto, nombre: Contacto }
+estilo: urbano
+plan_minimo: presencia
+version: 1.0.0
+base: astrowind
+demo_url: https://demo-plantilla-coworking-espacios.noexpertise.com
+activa: true
+orden: 410
+
+# Asistente de puesta en marcha (NoExpertise): un paso por pantalla. Rutas del site sin índices;
+# tipos: texto y lista (la IA propone), datos, fotos, eleccion (colores y logo) y repaso.
+asistente:
+  - id: negocio
+    titulo: "Tu espacio"
+    pregunta: "¿Cómo se llama tu coworking o centro de negocios, dónde está y qué lo hace distinto?"
+    ayuda: "El barrio, cómo es el local y para quién es: autónomos, equipos pequeños, empresas de paso…"
+    tipo: texto
+    campos: [nombre, eslogan, seo.titulo, seo.descripcion, secciones.hero.antetitulo, secciones.hero.titulo, secciones.hero.texto]
+  - id: contacto
+    titulo: "Cómo te encuentran"
+    pregunta: "¿Cuál es la dirección y cómo os pueden llamar o escribir? ¿Qué horario tenéis?"
+    ayuda: "Solo lo que quieras que vean tus clientes. Lo que dejes vacío no sale en tu web."
+    tipo: datos
+    campos: [contacto.telefono, contacto.whatsapp, contacto.email, contacto.direccion, contacto.horario, redes.instagram, redes.linkedin]
+  - id: espacios
+    titulo: "Tus espacios"
+    pregunta: "¿Qué ofreces? Uno por línea: puesto flexible, puesto fijo, despachos, salas… con para cuántas personas y el precio si quieres enseñarlo."
+    ayuda: "Las fotos de cada espacio las pones luego en Contenido."
+    tipo: lista
+    campos: [secciones.espacios.espacios]
+  - id: servicios
+    titulo: "Qué incluye"
+    pregunta: "¿Qué servicios van incluidos? Wifi, café, acceso 24 horas, domiciliación, taquillas… Uno por línea."
+    tipo: texto
+    campos: [secciones.servicios.titulo, secciones.servicios.texto, secciones.servicios.items]
+  - id: comunidad
+    titulo: "La comunidad"
+    pregunta: "¿Quién trabaja en tu espacio y cómo es el ambiente? Si tienes una frase de un miembro, cuéntamela."
+    tipo: texto
+    campos: [secciones.comunidad.titulo, secciones.comunidad.texto, secciones.comunidad.declaracion, secciones.comunidad.firma]
+  - id: equipo
+    titulo: "Quién lo lleva"
+    pregunta: "¿Quién atiende el espacio? Nombre y de qué se encarga cada persona, una por línea."
+    ayuda: "Las fotos las pones luego en Contenido."
+    tipo: lista
+    campos: [secciones.comunidad.personas]
+  - id: eventos
+    titulo: "Próximos eventos"
+    pregunta: "¿Qué eventos tenéis en la agenda? Uno por línea: fecha, hora, qué es y de qué va."
+    ayuda: "Desayunos, charlas, talleres, puertas abiertas… Si no organizáis, salta este paso."
+    tipo: lista
+    campos: [secciones.eventos.noticias]
+  - id: preguntas
+    titulo: "Preguntas frecuentes"
+    pregunta: "¿Qué te preguntan siempre antes de apuntarse? Permanencia, pase de día, mascotas, domiciliación… Escribe cada pregunta y lo que respondes."
+    ayuda: "Es lo que citan Google y los asistentes cuando alguien busca un coworking en tu zona."
+    tipo: lista
+    campos: [secciones.preguntas.preguntas]
+  - id: fotos
+    titulo: "Tus fotos"
+    pregunta: "Pon una foto de portada, la de la visita y las de la galería."
+    ayuda: "Sube las tuyas o elige una del banco. Las que no cambies se quedan como están."
+    tipo: fotos
+    campos: [secciones.hero.imagen, secciones.visita.imagen, secciones.galeria.galeria]
+  - id: aspecto
+    titulo: "Colores y logo"
+    pregunta: "Elige los colores de tu web y, si tienes, tu logo."
+    tipo: eleccion
+    campos: [colores.primario, colores.acento, logo]
+  - id: repaso
+    titulo: "Repaso"
+    tipo: repaso

@@ -1,0 +1,87 @@
+---
+// Portada a sangre: foto a pantalla casi completa con velo de carbón, título enorme abajo a la izquierda, dos
+// botones y, en escritorio, un rótulo con la dirección y el horario a la derecha (como la placa de un edificio).
+// Debajo, franja de color con los datos rápidos (`items`: titulo + texto); sin datos no hay franja.
+import { seccion, site } from '../../data/site';
+import { altHero } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string; primera?: boolean }
+const { id, primera = false } = Astro.props;
+const s = seccion(id);
+const c = site.contacto;
+const placa = !!(c.direccion || c.horario);
+---
+
+{
+  s && (
+    <section id={id} data-hero-sangre class="relative isolate flex min-h-[92svh] flex-col overflow-hidden banda--oscura">
+      <Imagen
+        src={s.imagen || '/placeholders/hero.svg'}
+        respaldo="/placeholders/hero.svg"
+        alt={altHero()}
+        ancho={1920}
+        alto={1080}
+        prioridad={primera}
+        class="absolute inset-0 -z-20 h-full w-full object-cover"
+      />
+      <div class="hero-velo absolute inset-0 -z-10" aria-hidden="true" />
+      <div class="contenedor flex flex-1 flex-col justify-end pb-12 pt-32 md:pb-20 md:pt-40">
+        <div class="grid gap-10 lg:grid-cols-12 lg:items-end">
+          <div class:list={[placa ? 'lg:col-span-9' : 'lg:col-span-12']}>
+            {s.antetitulo && <p class="rotulo">{s.antetitulo}</p>}
+            <h1 class="titulo-mega mt-6 max-w-[15ch]">{s.titulo || site.nombre}</h1>
+            {s.texto && <p class="mt-7 max-w-2xl text-lg opacity-90 md:text-xl">{s.texto}</p>}
+            {(s.cta?.url || s.cta_secundario?.url) && (
+              <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                {s.cta?.url && <a class="btn" href={s.cta.url}>{s.cta.texto}</a>}
+                {s.cta_secundario?.url && <a class="btn-sec" href={s.cta_secundario.url}>{s.cta_secundario.texto}</a>}
+              </div>
+            )}
+          </div>
+          {placa && (
+            <dl class="mono hidden border-l-2 border-[var(--c-acento)] pl-6 text-sm leading-relaxed lg:col-span-3 lg:block">
+              {c.direccion && (
+                <div>
+                  <dt class="text-xs uppercase tracking-[.16em] opacity-70">Dónde</dt>
+                  <dd class="mt-1">{c.direccion}</dd>
+                </div>
+              )}
+              {c.horario && (
+                <div class="mt-5">
+                  <dt class="text-xs uppercase tracking-[.16em] opacity-70">Horario</dt>
+                  <dd class="mt-1">{c.horario}</dd>
+                </div>
+              )}
+            </dl>
+          )}
+        </div>
+      </div>
+      {
+        s.items.length > 0 && (
+          <div class="banda--acento">
+            <dl class="contenedor grid sm:grid-cols-[repeat(auto-fit,minmax(13rem,1fr))]">
+              {s.items.map((d, i) => (
+                <div class="flex gap-4 border-b border-current/20 py-5 last:border-b-0 sm:border-b-0 sm:py-7 sm:pr-6">
+                  <span class="mono text-xs font-semibold opacity-70" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <div>
+                    <dt class="text-lg font-extrabold leading-tight tracking-tight">{d.titulo}</dt>
+                    {d.texto && <dd class="mt-1 text-sm opacity-80">{d.texto}</dd>}
+                  </div>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )
+      }
+    </section>
+  )
+}
+
+<style>
+  .hero-velo {
+    background:
+      linear-gradient(to bottom, color-mix(in srgb, var(--c-primario) 65%, transparent), transparent 9rem),
+      linear-gradient(to top, color-mix(in srgb, var(--c-primario) 92%, transparent) 0%, color-mix(in srgb, var(--c-primario) 55%, transparent) 45%, color-mix(in srgb, var(--c-primario) 25%, transparent) 100%),
+      linear-gradient(to right, color-mix(in srgb, var(--c-primario) 55%, transparent), transparent 70%);
+  }
+</style>

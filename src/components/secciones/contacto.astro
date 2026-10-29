@@ -1,0 +1,58 @@
+---
+// Contacto en banda de color pleno (acento): título enorme, los datos en tipografía grande como un rótulo
+// (teléfono, email, dirección con enlace al mapa, horario), botones de llamar y WhatsApp y, a la derecha, el
+// formulario en un bloque de carbón. Los datos salen de site.yaml → contacto; lo vacío no se pinta.
+import { seccion, site, tel, mapa, whatsapp } from '../../data/site';
+import FormularioContacto from '../ui/FormularioContacto.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const c = site.contacto;
+const datos = [
+  c.telefono && { etiqueta: 'Teléfono', valor: c.telefono, url: tel(c.telefono), grande: true },
+  c.email && { etiqueta: 'Email', valor: c.email, url: `mailto:${c.email}`, grande: false },
+  c.direccion && { etiqueta: 'Dirección', valor: c.direccion, url: mapa(c.direccion), grande: false },
+  c.horario && { etiqueta: 'Horario', valor: c.horario, url: '', grande: false },
+].filter(Boolean) as { etiqueta: string; valor: string; url: string; grande: boolean }[];
+---
+
+{
+  s && (
+    <section id={id} class="banda--acento seccion">
+      <div class="contenedor grid gap-14 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-7">
+          {s.antetitulo && <p class="rotulo">{s.antetitulo}</p>}
+          <h2 class="titulo-seccion">{s.titulo || site.nombre}</h2>
+          {s.texto && <p class="titular-texto mt-6 !opacity-90">{s.texto}</p>}
+          {datos.length > 0 && (
+            <dl class="mt-12 border-t-2 border-current">
+              {datos.map((d) => (
+                <div class="grid gap-1 border-b border-current/25 py-5 sm:grid-cols-[8rem_1fr] sm:gap-6">
+                  <dt class="mono pt-1 text-xs font-semibold uppercase tracking-[.14em] opacity-80">{d.etiqueta}</dt>
+                  <dd class:list={['min-w-0 break-words font-bold tracking-tight', d.grande ? 'text-[clamp(2rem,5vw,3.6rem)] leading-none' : 'text-lg md:text-xl']}>
+                    {d.url ? (
+                      <a href={d.url} class="underline decoration-2 underline-offset-[6px] hover:decoration-4" rel={d.url.startsWith('http') ? 'noopener' : undefined} target={d.url.startsWith('http') ? '_blank' : undefined}>
+                        {d.valor}
+                      </a>
+                    ) : (
+                      d.valor
+                    )}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          )}
+          {(c.telefono || c.whatsapp) && (
+            <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+              {c.telefono && <a class="btn" href={tel(c.telefono)}>Llamar</a>}
+              {c.whatsapp && <a class="btn-sec" href={whatsapp(c.whatsapp, `Hola, os escribo desde la web de ${site.nombre}.`)} rel="noopener" target="_blank">Escribir por WhatsApp</a>}
+            </div>
+          )}
+        </div>
+        <div class="banda--oscura tema-oscuro self-start p-6 sm:p-8 lg:col-span-5 lg:p-10">
+          <FormularioContacto prefijo="contacto" boton="Enviar mensaje" />
+        </div>
+      </div>
+    </section>
+  )
+}

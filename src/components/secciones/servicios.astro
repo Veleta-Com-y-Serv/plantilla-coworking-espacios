@@ -1,0 +1,41 @@
+---
+// Servicios incluidos: banda de carbón con retícula de plano y una rejilla de 4 columnas a todo el ancho, con
+// celdas separadas por líneas finas (como los módulos de un plano), icono en el acento y número de orden.
+// Lista `items` (titulo, texto, icono). Con `imagen`, franja de foto a sangre debajo.
+import { seccion, indice } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const items = s ? s.items.filter((it) => it.titulo) : [];
+---
+
+{
+  s && (
+    <section id={id} class="banda--oscura plano">
+      <div class="contenedor seccion">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        {items.length > 0 && (
+          <ul class="mt-14 grid grid-cols-2 gap-px border border-current/15 bg-current/15 md:mt-20 lg:grid-cols-4">
+            {items.map((it, i) => (
+              <li class="banda--oscura flex flex-col p-4 sm:p-6 md:p-8">
+                <div class="flex items-start justify-between">
+                  <Icono nombre={it.icono} tam={34} class="h-7 w-7 text-[var(--c-acento)] sm:h-[34px] sm:w-[34px]" />
+                  <span class="mono text-xs opacity-60" aria-hidden="true">{indice(i)}</span>
+                </div>
+                <h3 class="mt-5 text-base leading-tight tracking-tight sm:mt-8 sm:text-xl md:text-2xl">{it.titulo}</h3>
+                {it.texto && <p class="mt-2 text-sm opacity-75 sm:text-base">{it.texto}</p>}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      {s.imagen && (
+        <Imagen src={s.imagen} respaldo="/placeholders/espacio.svg" alt={altSeccion(s)} ancho={1920} alto={820} class="block aspect-[21/9] w-full object-cover" />
+      )}
+    </section>
+  )
+}
