@@ -21,6 +21,9 @@ export interface Espacio {
   incluye: string;     // «Wifi; Café; 4 horas de sala»
   imagen: string;
   destacado: boolean;
+  detalle?: string;   // ficha propia (src/lib/paginas.ts)
+  slug?: string;
+  imagenes?: string;
 }
 /** Cifra de la sección `comunidad` (`titulo` = la cifra, `texto` = la etiqueta). */
 export interface Cifra { titulo: string; texto?: string }
@@ -79,6 +82,9 @@ function espacio(e: Crudo): Espacio {
     incluye: texto(e.incluye),
     imagen: texto(e.imagen),
     destacado: e.destacado === true,
+    detalle: texto(e.detalle),
+    slug: texto(e.slug),
+    imagenes: texto(e.imagenes),
   };
 }
 

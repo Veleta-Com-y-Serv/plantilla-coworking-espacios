@@ -2,9 +2,10 @@
 // Espacios en zigzag a sangre: cada espacio es una fila 50/50 a todo el ancho con la foto tocando el borde de la
 // ventana y su ficha al lado (número, capacidad, nombre, texto, qué incluye, precio y botón). El destacado lleva
 // la ficha en carbón. Lista `espacios` (nombre, texto, precio, periodo, capacidad, incluye «;», imagen,
-// destacado). Sin precio no hay precio; sin espacios se ve la cabecera con el botón.
+// destacado, detalle). Los espacios con `detalle` tienen página propia (/espacios/<slug>/) y el título la enlaza\n// con la ficha entera clicable. Sin precio no hay precio; sin espacios se ve la cabecera con el botón.
 import { seccion, valores, indice } from '../../data/site';
 import { altFicha } from '../../lib/seo';
+import { enlaceDe } from '../../lib/paginas';
 import Titular from '../ui/Titular.astro';
 import Imagen from '../ui/Imagen.astro';
 import Icono from '../ui/Icono.astro';
@@ -38,7 +39,7 @@ const total = String(espacios.length).padStart(2, '0');
                 {e.destacado && <span class="mono absolute left-4 top-4 bg-[var(--c-acento)] px-3 py-1.5 text-xs font-bold uppercase tracking-[.14em] text-[var(--sobre-acento)] md:left-8 md:top-8">Destacado</span>}
               </div>
               <div class:list={['flex flex-col justify-center px-4 py-12 md:px-10 md:py-16 lg:px-20', e.destacado ? 'banda--oscura' : i % 2 ? 'banda--blanca' : 'banda--clara']}>
-                <div class="w-full max-w-[38rem]">
+                <div class="espacio-ficha w-full max-w-[38rem]">
                   <p class="mono flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-semibold uppercase tracking-[.14em]">
                     <span><span class="punto">{indice(i)}</span> / {total}</span>
                     {e.capacidad && (
@@ -48,7 +49,7 @@ const total = String(espacios.length).padStart(2, '0');
                       </span>
                     )}
                   </p>
-                  <h3 class="mt-5 text-[clamp(2rem,4.2vw,3.6rem)]">{e.nombre}</h3>
+                  <h3 class="mt-5 text-[clamp(2rem,4.2vw,3.6rem)]">{enlaceDe(e) ? <a href={enlaceDe(e)} class="espacio-enlace">{e.nombre}</a> : e.nombre}</h3>
                   {e.texto && <p class="mt-4 text-lg opacity-85">{e.texto}</p>}
                   {valores(e.incluye).length > 0 && (
                     <ul class="mt-7 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
@@ -60,7 +61,7 @@ const total = String(espacios.length).padStart(2, '0');
                       ))}
                     </ul>
                   )}
-                  {(e.precio || s.cta?.url) && (
+                  {(e.precio || s.cta?.url || enlaceDe(e)) && (
                     <div class="mt-9 flex flex-wrap items-end justify-between gap-6 border-t border-current/20 pt-6">
                       {e.precio && (
                         <p class="leading-none">
@@ -68,7 +69,7 @@ const total = String(espacios.length).padStart(2, '0');
                           {e.periodo && <span class="mono ml-2 text-sm opacity-75">{e.periodo}</span>}
                         </p>
                       )}
-                      {s.cta?.url && <a class="enlace-flecha" href={s.cta.url}>{s.cta.texto}</a>}
+                      {enlaceDe(e) ? <span class="enlace-flecha" aria-hidden="true">Ver el espacio</span> : s.cta?.url && <a class="enlace-flecha" href={s.cta.url}>{s.cta.texto}</a>}
                     </div>
                   )}
                 </div>
@@ -80,3 +81,12 @@ const total = String(espacios.length).padStart(2, '0');
     </section>
   )
 }
+
+<style>
+  .espacio-ficha { position: relative; }
+  .espacio-enlace { color: inherit; text-decoration: none; }
+  .espacio-enlace::after { content: ""; position: absolute; inset: -4rem -1rem; }
+  .espacio-enlace:focus-visible { outline: none; }
+  .espacio-ficha:has(.espacio-enlace:focus-visible) { outline: 3px solid var(--c-acento); outline-offset: 1rem; }
+  .espacio-ficha:has(.espacio-enlace):hover .enlace-flecha { border-bottom-width: 4px; }
+</style>

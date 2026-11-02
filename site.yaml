@@ -53,10 +53,65 @@ secciones:
     titulo: Elige cómo quieres trabajar
     texto: Desde un día suelto hasta un despacho para todo tu equipo. Todos los espacios incluyen wifi, café y las zonas comunes.
     espacios:
-      - { nombre: Puesto flexible, texto: "Siéntate donde quieras en la zona abierta. Ideal si vienes unos días a la semana.", precio: "Desde 150 €", periodo: al mes, capacidad: 1 persona, incluye: "Acceso de 8:00 a 20:00; Wifi de fibra; Café y té; 4 horas de sala al mes", imagen: /fotos/espacio-flexible.jpg, destacado: false }
-      - { nombre: Puesto fijo, texto: "Tu mesa, tu silla y tu cajonera con llave. Dejas el portátil y vuelves mañana.", precio: "240 €", periodo: al mes, capacidad: 1 persona, incluye: "Acceso 24 h con tarjeta; Cajonera con llave; Domiciliación fiscal; 8 horas de sala al mes", imagen: /fotos/espacio-fijo.jpg, destacado: true }
-      - { nombre: Despacho privado, texto: "Despachos cerrados con puerta de cristal y luz natural para equipos pequeños.", precio: "Desde 690 €", periodo: al mes, capacidad: 2 a 6 personas, incluye: "Acceso 24 h con tarjeta; Mobiliario y climatización; Rótulo en recepción; 15 horas de sala al mes", imagen: /fotos/espacio-despacho.jpg, destacado: false }
-      - { nombre: Sala de reuniones, texto: "Sala con pantalla grande, pizarra y agua. La reservas por horas aunque no seas miembro.", precio: "25 €", periodo: la hora, capacidad: Hasta 10 personas, incluye: "Pantalla de 65 pulgadas; Videollamada; Pizarra; Agua y café", imagen: /fotos/espacio-reuniones.jpg, destacado: false }
+      - nombre: Puesto flexible
+        texto: "Siéntate donde quieras en la zona abierta. Ideal si vienes unos días a la semana."
+        precio: "Desde 150 €"
+        periodo: al mes
+        capacidad: 1 persona
+        incluye: "Acceso de 8:00 a 20:00; Wifi de fibra; Café y té; 4 horas de sala al mes"
+        imagen: /fotos/espacio-flexible.jpg
+        imagenes: "/fotos/galeria-1.jpg; /fotos/galeria-2.jpg"
+        destacado: false
+        detalle: |
+          El puesto flexible es la manera más sencilla de probar el coworking. No tiene mesa asignada: llegas, eliges sitio en la zona abierta, según el día y el humor, y te pones a trabajar. Hay mesas largas para quien prefiere compañía, rincones junto a las ventanas para concentrarse y sofás para las llamadas más informales.
+
+          Está pensado para freelances que combinan casa y oficina, para quien viaja o para equipos remotos que se reúnen unos días a la semana. Puedes entrar cuando quieras dentro del horario de apertura y usar el wifi de fibra, el café y el té de la cocina y las zonas comunes igual que el resto de miembros.
+
+          Al no tener cajonera propia, cada tarde recoges tus cosas y dejas la mesa libre para quien llegue después; si necesitas guardar algo, las taquillas están en la entrada. Las horas de sala incluidas se reservan desde recepción. Si con el tiempo quieres más estabilidad, pasar a puesto fijo es cuestión de avisar y se hace de un mes para otro, sin papeleo.
+      - nombre: Puesto fijo
+        texto: "Tu mesa, tu silla y tu cajonera con llave. Dejas el portátil y vuelves mañana."
+        precio: "240 €"
+        periodo: al mes
+        capacidad: 1 persona
+        incluye: "Acceso 24 h con tarjeta; Cajonera con llave; Domiciliación fiscal; 8 horas de sala al mes"
+        imagen: /fotos/espacio-fijo.jpg
+        imagenes: "/fotos/galeria-3.jpg"
+        destacado: true
+        detalle: |
+          El puesto fijo es tu mesa de siempre dentro de la nave. Tiene tu silla, tu cajonera con llave y un sitio donde dejar el portátil, la segunda pantalla o las plantas que quieras traer. Cada mañana todo está como lo dejaste, y eso se nota al ponerte a trabajar.
+
+          Al tener acceso con tarjeta a cualquier hora, es la opción favorita de quien trabaja con horarios poco convencionales o con clientes de otras zonas horarias. Puedes usar la dirección de la nave para la domiciliación fiscal y recibir allí tus paquetes y tu correo, que recogemos por ti y te avisamos al momento.
+
+          Te sentarás junto a otros profesionales de oficios muy distintos, y de esas mesas contiguas salen muchas colaboraciones. Las horas de sala del plan sirven para reuniones con clientes o para sesiones de trabajo en equipo, y se reservan con antelación en recepción. Es el espacio más elegido por los miembros que llevan tiempo con nosotros.
+      - nombre: Despacho privado
+        texto: "Despachos cerrados con puerta de cristal y luz natural para equipos pequeños."
+        precio: "Desde 690 €"
+        periodo: al mes
+        capacidad: 2 a 6 personas
+        incluye: "Acceso 24 h con tarjeta; Mobiliario y climatización; Rótulo en recepción; 15 horas de sala al mes"
+        imagen: /fotos/espacio-despacho.jpg
+        imagenes: "/fotos/galeria-4.jpg; /fotos/galeria-5.jpg"
+        destacado: false
+        detalle: |
+          Los despachos privados son habitaciones cerradas, con puerta de cristal y mucha luz natural, para equipos pequeños que necesitan su propio sitio sin renunciar a la vida de la nave. Llegan amueblados y climatizados: solo hay que traer los portátiles y colgar la pizarra que prefiera cada equipo.
+
+          Tu empresa puede tener su rótulo en recepción, de manera que clientes y proveedores sepan dónde encontraros. El acceso es con tarjeta a cualquier hora, y las horas de sala incluidas cubren las reuniones que no caben en el despacho. Mantienes además la cocina, el wifi de fibra y las zonas comunes igual que el resto de miembros.
+
+          Es una buena solución para un estudio que crece, para una delegación que abre oficina en la ciudad o para un equipo que quiere dejar de trabajar desde cafeterías. Los despachos tienen distintos tamaños, y en la visita te enseñamos los que están libres para que elijas el que mejor se adapte a tu equipo.
+      - nombre: Sala de reuniones
+        texto: "Sala con pantalla grande, pizarra y agua. La reservas por horas aunque no seas miembro."
+        precio: "25 €"
+        periodo: la hora
+        capacidad: Hasta 10 personas
+        incluye: "Pantalla de 65 pulgadas; Videollamada; Pizarra; Agua y café"
+        imagen: /fotos/espacio-reuniones.jpg
+        destacado: false
+        detalle: |
+          La sala de reuniones se puede reservar por horas, seas o no miembro de la nave. Cuenta con una pantalla grande para presentaciones y videollamadas, una pizarra para dibujar ideas y agua en la mesa; si lo pides, también ponemos café para tus invitados. Es luminosa, silenciosa y tiene capacidad para un equipo entero.
+
+          La usan miembros que reciben a un cliente y necesitan un sitio profesional, y también autónomos que trabajan desde casa y solo precisan una sala de vez en cuando. Para reservar, basta con escribir o llamar a recepción, que te confirma la franja y deja la sala preparada antes de que llegues.
+
+          Para videollamadas largas o con varios participantes, la pantalla y el equipo de sonido evitan los problemas de siempre con los micrófonos. Si tu reunión se alarga, avisa y miramos si la sala sigue libre. Los miembros descuentan las horas de sala incluidas en su plan, y las horas adicionales se pagan al precio de la tarifa por hora.
       - { nombre: Sala de eventos, texto: "La planta baja de la nave para presentaciones, talleres y cursos.", precio: Consultar, periodo: "", capacidad: Hasta 60 personas, incluye: "Proyector y sonido; Sillas y mesas móviles; Zona de cáterin", imagen: /fotos/espacio-eventos.jpg, destacado: false }
     cta: { texto: Pide una visita, url: "/#visita" }
 

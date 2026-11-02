@@ -56,3 +56,6 @@ ni texto legible, sin logotipos. Personas del equipo con `/placeholders/persona.
 - No usar el coral como color de texto pequeño sobre fondo claro (no llega a AA): en claro, el coral solo en
   cuadrados, líneas, iconos y números grandes.
 - No poner precios ni cifras en los componentes: solo en `site.yaml`.
+
+## Páginas propias (fichas)
+Misma piel urbana que el zigzag de la portada: hero 50/50 a sangre con migas en mono y título enorme sobre banda clara (foto tocando el borde; sin foto, icono grande sobre carbón), banda blanca con el `detalle` y la tabla de datos con filete grueso más la caja de visita en carbón, galería a sangre y otros espacios en retícula con filetes. Esquinas rectas, acento en rótulos y botones.
