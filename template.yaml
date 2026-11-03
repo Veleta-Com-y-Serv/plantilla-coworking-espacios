@@ -20,7 +20,7 @@ secciones:
   - { id: contacto, nombre: Contacto }
 estilo: urbano
 plan_minimo: presencia
-version: 1.1.0
+version: 1.2.0
 base: astrowind
 demo_url: https://demo-plantilla-coworking-espacios.noexpertise.com
 activa: true
@@ -29,6 +29,13 @@ orden: 410
 # Páginas propias (docs/plantillas.md § Fichas por elemento y páginas por zona). Espejo en src/data/fichas.ts.
 fichas:
   - { lista: espacios, campo: espacios, ruta: espacios, nombre: Espacio, tipo: Service }
+
+# Varias páginas (docs/plantillas.md § Varias páginas): reparto recomendado al activar «Varias páginas».
+# Inicio se queda con la portada y lo que no esté en ninguna página (aquí, galería).
+paginas:
+  - { ruta: espacios, titulo: Espacios, secciones: "espacios; servicios" }
+  - { ruta: comunidad, titulo: Comunidad, secciones: "comunidad; eventos" }
+  - { ruta: visita, titulo: Visita, secciones: "visita; preguntas; contacto" }
 
 # Asistente de puesta en marcha (NoExpertise): un paso por pantalla. Rutas del site sin índices;
 # tipos: texto y lista (la IA propone), datos, fotos, eleccion (colores y logo) y repaso.

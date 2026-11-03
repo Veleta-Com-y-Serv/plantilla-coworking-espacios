@@ -12,6 +12,7 @@ Ejemplo: Nau Trenta Coworking, una nave rehabilitada del Poblenou (Barcelona), n
   - `visita.items[]`: pasos (titulo, texto); `visita.boton` opcional.
   - `hero.items[]`: datos rápidos de la franja de color (titulo, texto).
 - SEO de base incluido (`src/lib/seo.ts`): canónica, og:image, JSON-LD del negocio y de las preguntas frecuentes, `robots.txt`, `sitemap.xml` y `llms.txt`; `noindex` si `seo.indexable: false`.
+- Varias páginas (opcional, `paginas:` en la raíz de `site.yaml`): Inicio + una página por entrada (`{ ruta, titulo, secciones: "a; b" }`, hasta 6) con el menú hecho solo; reparto recomendado en `template.yaml → paginas`. Sin la clave, una sola página larga.
 - Contenido editable en `site.yaml`; metadatos y guion del asistente en `template.yaml`; fotos a generar en `fotos.json`; reglas para el agente en `CLAUDE.md`; brief de diseño en `DISEÑO.md`.
 
 ```
